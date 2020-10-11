@@ -25,7 +25,7 @@ This is an example of how to list things you need to use the service and how to 
 <!-- * HTTP Domain, this example has configured "myregistry.com"
 * Valid SSL for HTTP Domain -->
 
-### How Run
+### How to Run
 
 1. Clone the repo
 ```
@@ -60,5 +60,5 @@ To test configure /etc/hosts with myregistry.com to 127.0.0.1
 docker login myregistry.com:5000
 ```
 The example has configured the follow credentilas:
-    * username: myregistry
-    * password: myregistry
+* username: myregistry
+* password: myregistry
