@@ -31,8 +31,8 @@ This is an example of how to list things you need to use the service and how to 
 ```
 git clone https://github.com/AguGriguol/private-docker-registry.git
 ```
-2. We have two enviroments, development and production: 
-In console run:
+2. We have two enviroments, development and production. In console run:
+
 In the project root, build the docker images for development
 ```
 docker-compose -f docker/docker-compose-dev.yml build
@@ -48,17 +48,28 @@ docker images
 4. Run the registry
 Development
 ```
-docker-compose -f docker/docker-compose-dev.yml up -d
+docker-compose -f docker/docker-compose-dev.yml up
 ```
 Production
 ```
 docker-compose -f docker/docker-compose-prod.yml up -d
 ```
-5. Ready to login you local docker
-To test configure /etc/hosts with myregistry.com to 127.0.0.1
+5. Ready to login you local docker. To test, you must configure your /etc/hosts with myregistry.com to 127.0.0.1
 ```
 docker login myregistry.com:5000
 ```
 The example has configured the follow credentilas:
 * username: myregistry
 * password: myregistry
+
+If you want to change then credentials, you must generate "registry.password" file in auth folder. How?
+
+On MacOS: 
+```
+htpasswd -Bc registry.password [USERNAME]
+```
+
+### What's next
+
+* Create an access with nginx reverse proxy.
+
