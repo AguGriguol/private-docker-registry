@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     private_registry:
-        container_name: gtt_registry
+        container_name: private_registry
         image: registry:2
         ports:
             - "5000:5000"
@@ -25,6 +25,21 @@ services:
                 max-size: "10m"
                 max-file: "10"
 
+    registry_nginx:
+        build:
+            context: ../nginx
+            dockerfile: Dockerfile
+        container_name: registry_nginx
+        # restart: always
+        networks:
+            - private_registry_network
+        ports:
+            - "80:80"
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "100m"
+                max-file: "1"
 networks:
   private_registry_network:
     driver: bridge

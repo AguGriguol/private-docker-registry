@@ -5,6 +5,7 @@ The private docker registry is a small project in order to upload/download your 
 Here's why:
 * You prefer your images to be private.
 * To use the Docker API to manage the images.
+* Secure access with nginx over HTTP.
 
 Of course, you can pay to Docker for a private docker hub, but with this solution, you can upload/download your private images free.
 
@@ -50,17 +51,17 @@ Development
 ```
 docker-compose -f docker/docker-compose-dev.yml up
 ```
-Production
+Production (we will run in background with -d option)
 ```
 docker-compose -f docker/docker-compose-prod.yml up -d
 ```
-5. Ready to login you local docker. To test, you must configure your /etc/hosts with myregistry.com to 127.0.0.1
+5. Ready to login you local docker. To test, you must configure your /etc/hosts with myregistry.com to 127.0.0.1 (or server IP)
 ```
-docker login myregistry.com:5000
+docker login http://myregistry.com
 ```
 The example has configured the follow credentilas:
 * username: myregistry
-* password: myregistry
+* password: myregistry..
 
 If you want to change then credentials, you must generate "registry.password" file in auth folder. How?
 
@@ -71,5 +72,5 @@ htpasswd -Bc registry.password [USERNAME]
 
 ### What's next
 
-* Create an access with nginx reverse proxy.
+* Create a safe access configuration with nginx reverse proxy.
 
