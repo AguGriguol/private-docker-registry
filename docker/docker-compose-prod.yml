@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+    gtt_registry:
+        container_name: gtt_registry
+        image: registry:2
+        ports:
+            - "5000:5000"
+        networks:
+            - private_registry_network
+        volumes:
+            - ../registries:/var/lib/registry
+            # - ../certs:/certs
+            - ../auth:/auth
+        environment:
+            REGISTRY_AUTH: htpasswd
+            REGISTRY_AUTH_HTPASSWD_REALM: Registry
+            REGISTRY_AUTH_HTPASSWD_PATH: /auth/registry.password
+            REGISTRY_STORAGE_DELETE_ENABLED: 'true'
+            # REGISTRY_HTTP_TLS_CERTIFICATE: /certs/server-chained.crt
+            # REGISTRY_HTTP_TLS_KEY: /certs/server.key
+        restart: always
+        logging:
+            driver: "json-file"
+            options:
+                max-size: "10m"
+                max-file: "10"
+
+networks:
+  private_registry_network:
+    driver: bridge
