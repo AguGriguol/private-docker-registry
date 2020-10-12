@@ -23,8 +23,8 @@ This is an example of how you may create a private docker registry.
 This is an example of how to list things you need to use the service and how to install them.
 * Docker version 19.03.13
 * docker-compose version 1.27.4
-<!-- * HTTP Domain, this example has configured "myregistry.com"
-* Valid SSL for HTTP Domain -->
+* HTTP Domain, this example has configured "myregistry.com" (you can configure your /etc/hosts)
+<!-- * Valid SSL for HTTP Domain -->
 
 ### How to Run
 
@@ -63,6 +63,17 @@ The example has configured the follow credentilas:
 * username: myregistry
 * password: myregistry..
 
+## Examples: Push Image
+```
+docker tag docker_registry_nginx myregistry.com/docker_registry_nginx:latest
+docker push myregistry.com/docker_registry_nginx:latest
+```
+
+## Examples: Pull Image
+```
+docker pull myregistry.com/docker_registry_nginx:latest
+```
+
 If you want to change then credentials, you must generate "registry.password" file in auth folder. How?
 
 On MacOS: 
@@ -72,5 +83,5 @@ htpasswd -Bc registry.password [USERNAME]
 
 ### What's next
 
-* Create a safe access configuration with nginx reverse proxy.
+* Create a safe access configuration with nginx reverse proxy. (SSL)
 
